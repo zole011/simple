@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2025-05-14T10:00:00Z">
+    <header/>
+    <body>
+      <trans-unit id="tx_simple_domain_model_member.name">
+        <source>Name</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

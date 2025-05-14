@@ -1,0 +1,99 @@
+<f:layout name="Default" />
+<f:section name="main">
+    <h1>Create New Member</h1>
+    <f:form action="create" name="newMember" enctype="multipart/form-data" method="post">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <f:form.textfield name="newMember[name]" id="name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="prefix">Prefix:</label>
+            <f:form.textfield name="newMember[prefix]" id="prefix" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="prezime">Prezime:</label>
+            <f:form.textfield name="newMember[prezime]" id="prezime" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="funkcija">Funkcija:</label>
+            <f:form.textfield name="newMember[funkcija]" id="funkcija" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="zvanje">Zvanje:</label>
+            <f:form.textfield name="newMember[zvanje]" id="zvanje" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="oblast">Oblast:</label>
+            <f:form.textfield name="newMember[oblast]" id="oblast" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="konsultacije">Konsultacije:</label>
+            <f:form.textfield name="newMember[konsultacije]" id="konsultacije" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <f:form.textfield name="newMember[email]" id="email" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="biografija">Biografija:</label>
+            <f:form.textarea name="newMember[biografija]" id="biografija" class="form-control" rows="5" />
+        </div>
+
+        <div class="form-group">
+            <label for="radovi">Radovi:</label>
+            <f:form.textarea name="newMember[radovi]" id="radovi" class="form-control" rows="5" />
+        </div>
+
+        <div class="form-group">
+            <label for="udzbenici">Udžbenici:</label>
+            <f:form.textarea name="newMember[udzbenici]" id="udzbenici" class="form-control" rows="5" />
+        </div>
+
+        <div class="form-group">
+            <label for="cv">CV (PDF):</label>
+            <f:form.upload name="newMember[cv]" id="cv" class="form-control-file" />
+        </div>
+
+        <div class="form-group">
+            <label for="karton">Karton (PDF):</label>
+            <f:form.upload name="newMember[karton]" id="karton" class="form-control-file" />
+        </div>
+
+        <div class="form-group">
+            <label for="image">Slika:</label>
+            <f:form.upload name="newMember[image]" id="image" class="form-control-file" />
+        </div>
+
+        <div class="form-group">
+            <label for="sortiranje">Sortiranje:</label>
+            <f:form.select name="newMember[sortiranje]" id="sortiranje" class="form-control" options="{
+                'Direktor':'Direktor',
+                'Direktor za nastavu':'Direktor za nastavu',
+                'Predsednik saveta':'Predsednik saveta',
+                'Šef katedre za ekonomiju i finansije':'Šef katedre za ekonomiju i finansije',
+                'Šef katedre za menadžment i opšte pred':'Šef katedre za menadžment i opšte pred',
+                'Šef katedre za pravo.':'Šef katedre za pravo.',
+                'Redovni':'Redovni',
+                'Vanredni':'Vanredni',
+                'Docenti':'Docenti',
+                'Nastavnik stranog jezika':'Nastavnik stranog jezika',
+                'Asistenti':'Asistenti',
+                'Saradnici':'Saradnici',
+                'Van radnog odnosa':'Van radnog odnosa'
+            }" />
+        </div>
+
+        <div class="form-group">
+            <f:form.submit value="Create" class="btn btn-primary" />
+        </div>
+    </f:form>
+    <f:link.action action="index" class="btn btn-secondary">Cancel</f:link.action>
+</f:section>

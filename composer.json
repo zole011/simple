@@ -1,0 +1,21 @@
+{
+  "name": "gmbit/simple",
+  "type": "typo3-cms-extension",
+  "description": "Jednostavan TYPO3 backend modul sa CRUD funkcionalnošću.",
+  "require": {
+    "typo3/cms-core": "^13.0",
+    "typo3/cms-extbase": "^13.0",
+    "typo3/cms-fluid": "^13.0"
+  },
+  "version": "1.0.0",
+  "autoload": {
+    "psr-4": {
+      "Gmbit\\Simple\\": "Classes/"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "simple"
+    }
+  }
+}
