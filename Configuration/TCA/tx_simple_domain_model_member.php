@@ -33,6 +33,7 @@ return [
             ],
         ],
         'prefix' => [
+            'exclude' => true,
             'label' => 'Prefix',
             'config' => [
                 'type' => 'input',
@@ -40,6 +41,7 @@ return [
             ],
         ],
         'prezime' => [
+            'exclude' => true,
             'label' => 'Prezime',
             'config' => [
                 'type' => 'input',
@@ -47,6 +49,7 @@ return [
             ],
         ],
         'funkcija' => [
+            'exclude' => true,
             'label' => 'Funkcija',
             'config' => [
                 'type' => 'input',
@@ -54,6 +57,7 @@ return [
             ],
         ],
         'zvanje' => [
+            'exclude' => true,
             'label' => 'Zvanje',
             'config' => [
                 'type' => 'input',
@@ -61,6 +65,7 @@ return [
             ],
         ],
         'oblast' => [
+            'exclude' => true,
             'label' => 'Oblast',
             'config' => [
                 'type' => 'input',
@@ -68,6 +73,7 @@ return [
             ],
         ],
         'konsultacije' => [
+            'exclude' => true,
             'label' => 'Konsultacije',
             'config' => [
                 'type' => 'input',
@@ -75,6 +81,7 @@ return [
             ],
         ],
         'email' => [
+            'exclude' => true,
             'label' => 'Email',
             'config' => [
                 'type' => 'input',
@@ -83,6 +90,7 @@ return [
             ],
         ],
         'biografija' => [
+            'exclude' => true,
             'label' => 'Biografija',
             'config' => [
                 'type' => 'text',
@@ -92,6 +100,7 @@ return [
             ],
         ],
         'radovi' => [
+            'exclude' => true,
             'label' => 'Radovi',
             'config' => [
                 'type' => 'text',
@@ -101,6 +110,7 @@ return [
             ],
         ],
         'udzbenici' => [
+            'exclude' => true,
             'label' => 'Udžbenici',
             'config' => [
                 'type' => 'text',
@@ -110,6 +120,7 @@ return [
             ],
         ],
         'cv' => [
+            'exclude' => true,
             'label' => 'CV',
             'config' => [
                 'type' => 'file',
@@ -118,6 +129,7 @@ return [
             ],
         ],
         'karton' => [
+            'exclude' => true,
             'label' => 'Karton',
             'config' => [
                 'type' => 'file',
@@ -126,6 +138,7 @@ return [
             ],
         ],
         'image' => [
+            'exclude' => true,
             'label' => 'Slika',
             'config' => [
                 'type' => 'file',
@@ -134,6 +147,7 @@ return [
             ],
         ],
         'sortiranje' => [
+            'exclude' => true,
             'label' => 'Sortiranje',
             'config' => [
                 'type' => 'select',

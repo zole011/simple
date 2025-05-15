@@ -1,14 +1,21 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Gmbit\Simple\Domain\Model;
 
+use TYPO3\CMS\Core\Resource\Enum\DuplicationBehavior;
+use TYPO3\CMS\Extbase\Annotation\FileUpload;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\Annotation\FileUpload;
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Annotation\Validate;
 
 
 class Member extends AbstractEntity
 {
+    #[Validate([
+        'validator' => 'NotEmpty'
+    ])]
     protected string $name = '';
     protected string $prefix = '';
     protected string $prezime = '';
@@ -20,10 +27,24 @@ class Member extends AbstractEntity
     protected string $biografija = '';
     protected string $radovi = '';
     protected string $udzbenici = '';
+    protected string $sortiranje = '';
+
+    #[FileUpload([
+        'validation' => [
+            'required' => true,
+            'maxFiles' => 1,
+            'fileSize' => ['minimum' => '0K', 'maximum' => '2M'],
+            'mimeType' => ['allowedMimeTypes' => ['image/jpeg']],
+            'imageDimensions' => ['maxWidth' => 4096, 'maxHeight' => 4096]
+        ],
+        'uploadFolder' => '1:/user_upload/profimg/',
+        'addRandomSuffix' => false,
+        'duplicationBehavior' => DuplicationBehavior::RENAME,
+    ])]
     protected ?FileReference $cv = null;
     protected ?FileReference $karton = null;
     protected ?FileReference $image = null;
-    protected string $sortiranje = '';
+
 
     // Getters
     public function getName(): string

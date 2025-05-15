@@ -1,37 +1,99 @@
 <f:layout name="Default" />
 <f:section name="main">
     <h1>Create New Member</h1>
-    <f:form action="create" name="newMember" enctype="multipart/form-data" method="post">
-        <div class="form-group">name" />
-            <label for="name">Name:</label>el="Prefix" />
-            <f:form.textfield name="name" id="name" class="form-control" />
-        </div>xtfield property="funkcija" label="Funkcija" />
-    <f:form.textfield property="zvanje" label="Zvanje" />
-        <div class="form-group">oblast" label="Oblast" />
-            <label for="prefix">Prefix:</label>abel="Konsultacije" />
-            <f:form.textfield name="prefix" id="prefix" class="form-control" />
-        </div>xtarea property="biografija" label="Biografija" />
-    <f:form.textarea property="radovi" label="Radovi" />
-        <div class="form-group">dzbenici" label="Udžbenici" />
-            <label for="prezime">Prezime:</label>
-            <f:form.textfield name="prezime" id="prezime" class="form-control" />
-        </div>load property="image" label="Slika" />
-    <f:form.select property="sortiranje" label="Sortiranje" options="{
+    <f:form action="update" name="member" object="{member}"  enctype="multipart/form-data">
         <div class="form-group">
-            <label for="funkcija">Funkcija:</label>,
-            <f:form.textfield name="funkcija" id="funkcija" class="form-control" />
-        </div>atedre za ekonomiju i finansije':'Šef katedre za ekonomiju i finansije',
-        'Šef katedre za menadžment i opšte pred':'Šef katedre za menadžment i opšte pred',
-        <div class="form-group">'Šef katedre za pravo.',
+            <label for="name">Name:</label>
+            <f:form.textfield property="name" id="name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="prefix">Prefix:</label>
+            <f:form.textfield property="prefix" id="prefix" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="prezime">Prezime:</label>
+            <f:form.textfield property="prezime" id="prezime" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="funkcija">Funkcija:</label>
+            <f:form.textfield property="funkcija" id="funkcija" class="form-control" />
+        </div>
+
+        <div class="form-group">
             <label for="zvanje">Zvanje:</label>
-            <f:form.textfield name="zvanje" id="zvanje" class="form-control" />
-        </div>ti':'Docenti',
-        'Nastavnik stranog jezika':'Nastavnik stranog jezika',
+            <f:form.textfield property="zvanje" id="zvanje" class="form-control" />
+        </div>
+
         <div class="form-group">
             <label for="oblast">Oblast:</label>
-            <f:form.textfield name="oblast" id="oblast" class="form-control" />
+            <f:form.textfield property="oblast" id="oblast" class="form-control" />
         </div>
-    <f:form.submit value="Update" />
+
         <div class="form-group">
-            <label for="konsultacije">Konsultacije:</label>>
-            <f:form.textfield name="konsultacije" id="konsultacije" class="form-control" />        </div>        <div class="form-group">            <label for="email">Email:</label>            <f:form.textfield name="email" id="email" class="form-control" />        </div>        <div class="form-group">            <label for="biografija">Biografija:</label>            <f:form.textarea name="biografija" id="biografija" class="form-control" rows="5" />        </div>        <div class="form-group">            <label for="radovi">Radovi:</label>            <f:form.textarea name="radovi" id="radovi" class="form-control" rows="5" />        </div>        <div class="form-group">            <label for="udzbenici">Udžbenici:</label>            <f:form.textarea name="udzbenici" id="udzbenici" class="form-control" rows="5" />        </div>        <div class="form-group">            <label for="cv">CV (PDF):</label>            <f:form.upload name="cv" id="cv" class="form-control-file" />        </div>        <div class="form-group">            <label for="karton">Karton (PDF):</label>            <f:form.upload name="karton" id="karton" class="form-control-file" />        </div>        <div class="form-group">            <label for="image">Slika:</label>            <f:form.upload name="image" id="image" class="form-control-file" />        </div>        <div class="form-group">            <label for="sortiranje">Sortiranje:</label>            <f:form.select property="sortiranje" id="sortiranje" class="form-control" options="{                'Direktor':'Direktor',                'Direktor za nastavu':'Direktor za nastavu',                'Predsednik saveta':'Predsednik saveta',                'Šef katedre za ekonomiju i finansije':'Šef katedre za ekonomiju i finansije',                'Šef katedre za menadžment i opšte pred':'Šef katedre za menadžment i opšte pred',                'Šef katedre za pravo.':'Šef katedre za pravo.',                'Redovni':'Redovni',                'Vanredni':'Vanredni',                'Docenti':'Docenti',                'Nastavnik stranog jezika':'Nastavnik stranog jezika',                'Asistenti':'Asistenti',                'Saradnici':'Saradnici',                'Van radnog odnosa':'Van radnog odnosa'            }" />        </div>        <div class="form-group">            <f:form.submit value="Create" class="btn btn-primary" />        </div>    </f:form>    <f:link.action action="index" class="btn btn-secondary">Cancel</f:link.action></f:section>
+            <label for="konsultacije">Konsultacije:</label>
+            <f:form.textfield property="konsultacije" id="konsultacije" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <f:form.textfield property="email" id="email" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="biografija">Biografija:</label>
+            <f:form.textarea property="biografija" id="biografija" class="form-control" rows="5" />
+        </div>
+
+        <div class="form-group">
+            <label for="radovi">Radovi:</label>
+            <f:form.textarea property="radovi" id="radovi" class="form-control" rows="5" />
+        </div>
+
+        <div class="form-group">
+            <label for="udzbenici">Udžbenici:</label>
+            <f:form.textarea property="udzbenici" id="udzbenici" class="form-control" rows="5" />
+        </div>
+
+        <div class="form-group">
+            <label for="cv">CV (PDF):</label>
+            <f:form.upload property="file" id="cv" class="form-control-file" />
+        </div>
+
+        <div class="form-group">
+            <label for="karton">Karton (PDF):</label>
+            <f:form.upload property="file" id="karton" class="form-control-file" />
+        </div>
+
+        <div class="form-group">
+            <label for="image">Slika:</label>
+            <f:form.upload property="file" id="image" class="form-control-file" />
+        </div>
+
+        <div class="form-group">
+            <label for="sortiranje">Sortiranje:</label>
+            <f:form.select property="sortiranje" id="sortiranje" class="form-control" options="{
+                'Direktor':'Direktor',
+                'Direktor za nastavu':'Direktor za nastavu',
+                'Predsednik saveta':'Predsednik saveta',
+                'Šef katedre za ekonomiju i finansije':'Šef katedre za ekonomiju i finansije',
+                'Šef katedre za menadžment i opšte pred':'Šef katedre za menadžment i opšte pred',
+                'Šef katedre za pravo.':'Šef katedre za pravo.',
+                'Redovni':'Redovni',
+                'Vanredni':'Vanredni',
+                'Docenti':'Docenti',
+                'Nastavnik stranog jezika':'Nastavnik stranog jezika',
+                'Asistenti':'Asistenti',
+                'Saradnici':'Saradnici',
+                'Van radnog odnosa':'Van radnog odnosa'
+            }" />
+        </div>
+
+        <div class="form-group">
+            <f:form.submit value="Create" class="btn btn-primary" />
+        </div>
+    </f:form>
+    <f:link.action action="index" class="btn btn-secondary">Cancel</f:link.action>
+</f:section>

@@ -6,4 +6,3 @@ services:
 
   Gmbit\Simple\:
     resource: '../Classes/*'
-    exclude: '../Classes/Domain/Model/*'
