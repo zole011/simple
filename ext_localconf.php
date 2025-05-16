@@ -27,6 +27,3 @@ ExtensionUtility::configurePlugin(
         MemberController::class => 'new,create,edit,update,delete',
     ]
 );
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-    '@import "EXT:simple/Configuration/page.tsconfig"'
-);

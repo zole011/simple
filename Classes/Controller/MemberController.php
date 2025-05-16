@@ -270,21 +270,4 @@ class MemberController extends ActionController
             ['uid' => $memberUid]
         );
     }
-
-protected function initializeAction(): void
-{
-    parent::initializeAction();
-
-    if ($GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.controller') === null) {
-        $this->view->setTemplateRootPaths([
-            'EXT:simple/Resources/Private/Templates/Member/Backend/'
-        ]);
-        $this->view->setPartialRootPaths([
-            'EXT:simple/Resources/Private/Partials/'
-        ]);
-        $this->view->setLayoutRootPaths([
-            'EXT:simple/Resources/Private/Layouts/'
-        ]);
-    }
-}
 }
