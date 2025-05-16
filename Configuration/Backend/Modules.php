@@ -21,5 +21,16 @@ return [
                 'delete',
             ],
         ],
+        'view' => [
+            'templateRootPaths' => [
+                0 => 'EXT:simple/Resources/Private/Templates/Member/Backend/'
+            ],
+            'partialRootPaths' => [
+                0 => 'EXT:simple/Resources/Private/Partials/'
+            ],
+            'layoutRootPaths' => [
+                0 => 'EXT:simple/Resources/Private/Layouts/'
+            ],
+        ],
     ],
 ];

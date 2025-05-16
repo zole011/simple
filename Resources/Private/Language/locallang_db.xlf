@@ -3,6 +3,9 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2025-05-14T10:00:00Z">
     <header/>
     <body>
+      <trans-unit id="tx_simple_domain_model_member.pluginTitle">
+        <source>Members Plugin</source>
+      </trans-unit>
       <trans-unit id="tx_simple_domain_model_member.name">
         <source>Name</source>
       </trans-unit>

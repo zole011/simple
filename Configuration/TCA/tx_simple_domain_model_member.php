@@ -13,7 +13,26 @@ return [
         'iconfile' => 'EXT:simple/Resources/Public/Icons/Extension.svg',
     ],
     'types' => [
-        '1' => ['showitem' => 'hidden, name'],
+        '1' => [
+            'showitem' => '
+                hidden, 
+                name, 
+                prefix, 
+                prezime, 
+                funkcija, 
+                zvanje, 
+                oblast, 
+                konsultacije, 
+                email, 
+                biografija, 
+                radovi, 
+                udzbenici, 
+                cv, 
+                karton, 
+                image, 
+                sortiranje
+            ',
+        ],
     ],
     'columns' => [
         'hidden' => [
@@ -124,8 +143,25 @@ return [
             'label' => 'CV',
             'config' => [
                 'type' => 'file',
-                'allowed' => 'pdf',
                 'maxitems' => 1,
+                'appearance' => [
+                    'createNewRelationLinkTitle' => 'Add File',
+                ],
+                'fieldControl' => [
+                    'editPopup' => [
+                        'disabled' => false,
+                    ],
+                    'addRecord' => [
+                        'disabled' => false,
+                    ],
+                    'listModule' => [
+                        'disabled' => true,
+                    ],
+                ],
+                'foreign_match_fields' => [
+                    'fieldname' => 'cv',
+                ],
+                'allowed' => 'pdf',
             ],
         ],
         'karton' => [
@@ -133,17 +169,51 @@ return [
             'label' => 'Karton',
             'config' => [
                 'type' => 'file',
-                'allowed' => 'pdf',
                 'maxitems' => 1,
+                'appearance' => [
+                    'createNewRelationLinkTitle' => 'Add File',
+                ],
+                'fieldControl' => [
+                    'editPopup' => [
+                        'disabled' => false,
+                    ],
+                    'addRecord' => [
+                        'disabled' => false,
+                    ],
+                    'listModule' => [
+                        'disabled' => true,
+                    ],
+                ],
+                'foreign_match_fields' => [
+                    'fieldname' => 'karton',
+                ],
+                'allowed' => 'pdf',
             ],
         ],
         'image' => [
             'exclude' => true,
-            'label' => 'Slika',
+            'label' => 'Image',
             'config' => [
                 'type' => 'file',
-                'allowed' => 'common-image-types',
                 'maxitems' => 1,
+                'appearance' => [
+                    'createNewRelationLinkTitle' => 'Add File',
+                ],
+                'fieldControl' => [
+                    'editPopup' => [
+                        'disabled' => false,
+                    ],
+                    'addRecord' => [
+                        'disabled' => false,
+                    ],
+                    'listModule' => [
+                        'disabled' => true,
+                    ],
+                ],
+                'foreign_match_fields' => [
+                    'fieldname' => 'image',
+                ],
+                'allowed' => 'jpg,png,gif',
             ],
         ],
         'sortiranje' => [

@@ -1,0 +1,17 @@
+plugin.tx_simple_pi1 {
+    view {
+        templateRootPaths.0 = EXT:simple/Resources/Private/Templates/
+        partialRootPaths.0 = EXT:simple/Resources/Private/Partials/
+        layoutRootPaths.0 = EXT:simple/Resources/Private/Layouts/
+    }
+    features {
+        # enable all features you need
+    }
+}
+
+tt_content.list.20.simple_pi1 = USER
+tt_content.list.20.simple_pi1 {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = Simple
+    pluginName = Pi1
+}

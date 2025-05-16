@@ -1,0 +1,26 @@
+<f:layout name="Default" />
+<f:section name="main">
+  <h1>Members</h1>
+  <f:flashMessages />
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <f:for each="{members}" as="member">
+        <tr>
+          <td>{member.name}</td>
+          <td>
+            <f:link.action action="show" arguments="{member: member}">Show</f:link.action> |
+            <f:link.action action="edit" arguments="{member: member}">Edit</f:link.action> |
+            <f:link.action action="delete" arguments="{member: member}">Delete</f:link.action>
+          </td>
+        </tr>
+      </f:for>
+    </tbody>
+  </table>
+  <f:link.action action="new">Create new Member</f:link.action>
+</f:section>

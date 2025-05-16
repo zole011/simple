@@ -1,26 +1,41 @@
 <f:layout name="Default" />
 <f:section name="main">
+  <f:debug>{members}</f:debug>
   <h1>Members</h1>
-  <f:flashMessages />
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <f:for each="{members}" as="member">
-        <tr>
-          <td>{member.name}</td>
-          <td>
-            <f:link.action action="show" arguments="{member: member}">Show</f:link.action> |
-            <f:link.action action="edit" arguments="{member: member}">Edit</f:link.action> |
-            <f:link.action action="delete" arguments="{member: member}">Delete</f:link.action>
-          </td>
-        </tr>
-      </f:for>
-    </tbody>
-  </table>
-  <f:link.action action="new">Create new Member</f:link.action>
+  <f:for each="{members}" as="member">
+    <div
+      class="col-lg-4 col-md-4 col-sm-12 flex_column-teachers"
+      style="margin-bottom: 20px"
+    >
+      <div class="single-teacher-item flex-direction-column">
+        <div class="single-teacher-image">
+          <f:if condition="{member.image}">
+            <f:then>
+               <f:link.action action="show" arguments="{member: member}">
+              <f:image
+                image="{member.image}"
+                alt="{member.name}"
+                class="img-responsive"
+                width="260"
+                height="270"
+              />
+              </f:link.action>
+            </f:then>
+            <f:else>
+              <img src="" alt="{member.name}" class="img-responsive" />
+            </f:else>
+          </f:if>
+        </div>
+        <div class="single-teacher-text flex-expand">
+          <h3>
+            <f:link.action action="show" arguments="{member: member}">
+              <f:if condition="{member.prefix}">{member.prefix}&nbsp;</f:if>{member.name}&nbsp;{member.prezime}
+            </f:link.action>
+          </h3>
+          {member.funkcija}
+          <h4>{member.zvanje}</h4>
+        </div>
+      </div>
+    </div>
+  </f:for>
 </f:section>

@@ -7,13 +7,23 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 ExtensionUtility::configurePlugin(
     'simple',
-    'Pi1',
+    'Pi1', // Frontend plugin
     [
-        MemberController::class => 'list,new,create,show,edit,update',
+        MemberController::class => 'index,show',
     ],
-    // non-cacheable actions
     [
-        MemberController::class => 'list,new,create,show,edit,update',
+        MemberController::class => 'index,show',
     ],
     ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+);
+
+ExtensionUtility::configurePlugin(
+    'simple',
+    'Backend', // Backend modul
+    [
+        MemberController::class => 'index,show,new,create,edit,update,delete',
+    ],
+    [
+        MemberController::class => 'new,create,edit,update,delete',
+    ]
 );

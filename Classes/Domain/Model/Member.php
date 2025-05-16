@@ -4,18 +4,11 @@ declare(strict_types=1);
 
 namespace Gmbit\Simple\Domain\Model;
 
-use TYPO3\CMS\Core\Resource\Enum\DuplicationBehavior;
-use TYPO3\CMS\Extbase\Annotation\FileUpload;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\Annotation\Validate;
-
 
 class Member extends AbstractEntity
 {
-    #[Validate([
-        'validator' => 'NotEmpty'
-    ])]
     protected string $name = '';
     protected string $prefix = '';
     protected string $prezime = '';
@@ -29,144 +22,41 @@ class Member extends AbstractEntity
     protected string $udzbenici = '';
     protected string $sortiranje = '';
 
-    #[FileUpload([
-        'validation' => [
-            'required' => true,
-            'maxFiles' => 1,
-            'fileSize' => ['minimum' => '0K', 'maximum' => '2M'],
-            'mimeType' => ['allowedMimeTypes' => ['image/jpeg']],
-            'imageDimensions' => ['maxWidth' => 4096, 'maxHeight' => 4096]
-        ],
-        'uploadFolder' => '1:/user_upload/profimg/',
-        'addRandomSuffix' => false,
-        'duplicationBehavior' => DuplicationBehavior::RENAME,
-    ])]
     protected ?FileReference $cv = null;
     protected ?FileReference $karton = null;
     protected ?FileReference $image = null;
 
-
     // Getters
-    public function getName(): string
-    {
-        return $this->name;
-    }
-    public function getPrefix(): string
-    {
-        return $this->prefix;
-    }
-    public function getPrezime(): string
-    {
-        return $this->prezime;
-    }
-    public function getFunkcija(): string
-    {
-        return $this->funkcija;
-    }
-    public function getZvanje(): string
-    {
-        return $this->zvanje;
-    }
-    public function getOblast(): string
-    {
-        return $this->oblast;
-    }
-    public function getKonsultacije(): string
-    {
-        return $this->konsultacije;
-    }
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-    public function getBiografija(): string
-    {
-        return $this->biografija;
-    }
-    public function getRadovi(): string
-    {
-        return $this->radovi;
-    }
-    public function getUdzbenici(): string
-    {
-        return $this->udzbenici;
-    }
-    public function getSortiranje(): string
-    {
-        return $this->sortiranje;
-    }
-    public function getCv(): ?FileReference
-    {
-        return $this->cv;
-    }
-    public function getKarton(): ?FileReference
-    {
-        return $this->karton;
-    }
-    public function getImage(): ?FileReference
-    {
-        return $this->image;
-    }
-    
+    public function getName(): string { return $this->name; }
+    public function getPrefix(): string { return $this->prefix; }
+    public function getPrezime(): string { return $this->prezime; }
+    public function getFunkcija(): string { return $this->funkcija; }
+    public function getZvanje(): string { return $this->zvanje; }
+    public function getOblast(): string { return $this->oblast; }
+    public function getKonsultacije(): string { return $this->konsultacije; }
+    public function getEmail(): string { return $this->email; }
+    public function getBiografija(): string { return $this->biografija; }
+    public function getRadovi(): string { return $this->radovi; }
+    public function getUdzbenici(): string { return $this->udzbenici; }
+    public function getSortiranje(): string { return $this->sortiranje; }
+    public function getCv(): ?FileReference { return $this->cv; }
+    public function getKarton(): ?FileReference { return $this->karton; }
+    public function getImage(): ?FileReference { return $this->image; }
+
     // Setters
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-        public function setPrefix(string $prefix): void
-    {
-        $this->prefix = $prefix;
-    }
-        public function setPrezime(string $prezime): void
-    {
-        $this->prezime = $prezime;
-    }
-        public function setFunkcija(string $funkcija): void
-    {
-        $this->funkcija = $funkcija;
-    }
-        public function setZvanje(string $zvanje): void
-    {
-        $this->zvanje = $zvanje;
-    }
-        public function setOblast(string $oblast): void
-    {
-        $this->oblast = $oblast;
-    }
-        public function setKonsultacije(string $konsultacije): void
-    {
-        $this->konsultacije = $konsultacije;
-    }
-        public function setEmail(string $email): void
-    {
-        $this->email = $email;
-    }
-        public function setBiografija(string $biografija): void
-    {
-        $this->biografija = $biografija;
-    }
-        public function setRadovi(string $radovi): void
-    {
-        $this->radovi = $radovi;
-    }
-        public function setUdzbenici(string $udzbenici): void
-    {
-        $this->udzbenici = $udzbenici;
-    }
-        public function setSortiranje(string $sortiranje): void
-    {
-        $this->sortiranje = $sortiranje;
-    }
-        public function setCv(?FileReference $cv): void
-    {
-        $this->cv = $cv;
-    }
-        public function setKarton(?FileReference $karton): void
-    {
-        $this->karton = $karton;
-    }
-        public function setImage(?FileReference $image): void
-    {
-        $this->image = $image;
-    }
+    public function setName(string $name): void { $this->name = $name; }
+    public function setPrefix(string $prefix): void { $this->prefix = $prefix; }
+    public function setPrezime(string $prezime): void { $this->prezime = $prezime; }
+    public function setFunkcija(string $funkcija): void { $this->funkcija = $funkcija; }
+    public function setZvanje(string $zvanje): void { $this->zvanje = $zvanje; }
+    public function setOblast(string $oblast): void { $this->oblast = $oblast; }
+    public function setKonsultacije(string $konsultacije): void { $this->konsultacije = $konsultacije; }
+    public function setEmail(string $email): void { $this->email = $email; }
+    public function setBiografija(string $biografija): void { $this->biografija = $biografija; }
+    public function setRadovi(string $radovi): void { $this->radovi = $radovi; }
+    public function setUdzbenici(string $udzbenici): void { $this->udzbenici = $udzbenici; }
+    public function setSortiranje(string $sortiranje): void { $this->sortiranje = $sortiranje; }
+    public function setCv(?FileReference $cv): void { $this->cv = $cv; }
+    public function setKarton(?FileReference $karton): void { $this->karton = $karton; }
+    public function setImage(?FileReference $image): void { $this->image = $image; }
 }

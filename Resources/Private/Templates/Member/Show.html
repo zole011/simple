@@ -1,6 +1,89 @@
 <f:layout name="Default" />
+<f:debug>{_all}</f:debug>
 <f:section name="main">
-  <h1>Member Details</h1>
-  <p><strong>Name:</strong> {member.name}</p>
+		<div class="col-md-9">
+			<div class="course-details-content">
+				<div class="single-course-details">
+					<div class="row">	
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="overlay-effect">
+                <f:if condition="{member.image}">
+                  <f:then>
+                    <f:image image="{member.image}" alt="{member.name}" class="img-responsive" width="100%" height="100%" />
+                  </f:then>
+                  <f:else>
+                    <img src="" alt="{member.name}" class="img-responsive" />
+                  </f:else>
+                </f:if>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12">
+							<div class="single-item-text">
+								<h4>
+                  <f:if condition="{member.prefix}">{member.prefix}</f:if>&nbsp;
+                  {member.name}&nbsp;{member.prezime}<br/><br/>
+                  <f:if condition="{member.funkcija}">{member.funkcija}</f:if>
+                </h4>
+              <div class="single-item-text-info">
+                <span>
+                <f:if condition="{member.zvanje}">{member.zvanje}</f:if>
+                </span>
+              </div>
+              <div class="single-item-text-info">
+                <span><f:if condition="{member.oblast}">{member.oblast}</f:if>
+                </span>
+              </div>
+              <div class="single-item-text-info">
+                <span><f:if condition="{member.konsultacije}">{member.konsultacije}</f:if>
+                </span>
+              </div>
+              <div class="single-item-text-info">
+                <f:if condition="{member.email}"><i class="fa fa-envelope"></i>{member.email}</f:if>
+              </div>
+              <div class="single-item-text-info">
+                <f:if condition="{member.biografija}"><p>{member.biografija}</p></f:if>
+              </div>
+            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="course-duration">
+			<div class="duration-title">
+        <div class="text">Biografija/bibliografija</div>
+      </div>
+      <div class="duration-text">        
+          <button class="text accordion">Biografija</button>
+          <div class="panel">
+            <p>
+              <div class="single-item-text-info">
+              <f:if condition="{member.cv}">
+                <a href="{member.cv.originalResource.publicUrl}" target="_blank">
+                  <i class="fa fa-file-pdf-o"></i>Preuzmite biografiju
+                </a>
+              </f:if>
+              </div>
+            </p>
+          </div>
+          <button class="text accordion">Naučni i stručni radovi</button>
+          <div class="panel">
+            <p>
+              <f:if condition="{member.radovi}">
+                {member.radovi}
+              </f:if>
+            </p>
+          </div>
+          <button class="text accordion">Udžbenici i monografija</button>
+           <div class="panel">
+            <p>
+              <f:if condition="{member.udzbenici}">
+              {member.udzbenici}
+              </f:if>
+            </p>
+          </div>
+   				</div>
+			</div>
+		</div>		
+	</div>       
   <f:link.action action="index">Back to list</f:link.action>
 </f:section>
