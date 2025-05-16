@@ -1,0 +1,7 @@
+mod {
+  templates {
+    simple_pi1 {
+      10 = EXT:simple/Resources/Private/Templates/Member/Backend/
+    }
+  }
+}

@@ -271,16 +271,20 @@ class MemberController extends ActionController
         );
     }
 
-    public function initializeView(\TYPO3Fluid\Fluid\View\ViewInterface $view): void
-    {
-        // Samo za backend modul koristi backend template
-        if (defined('TYPO3_REQUESTTYPE') && (TYPO3_REQUESTTYPE & TYPO3_REQUESTTYPE_BE)
-            && isset($_SERVER['REQUEST_URI'])
-            && str_contains($_SERVER['REQUEST_URI'], '/module/page/simple')) {
-            $view->setTemplateRootPaths([
-                0 => 'EXT:simple/Resources/Private/Templates/Member/Backend/'
-            ]);
-        }
-        // Frontend koristi TypoScript konfiguraciju (ne postavljaj ništa ovde)
+protected function initializeAction(): void
+{
+    parent::initializeAction();
+
+    if ($GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.controller') === null) {
+        $this->view->setTemplateRootPaths([
+            'EXT:simple/Resources/Private/Templates/Member/Backend/'
+        ]);
+        $this->view->setPartialRootPaths([
+            'EXT:simple/Resources/Private/Partials/'
+        ]);
+        $this->view->setLayoutRootPaths([
+            'EXT:simple/Resources/Private/Layouts/'
+        ]);
     }
+}
 }
