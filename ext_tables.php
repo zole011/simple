@@ -6,6 +6,6 @@ defined('TYPO3') or die();
         'LLL:EXT:simple/Resources/Private/Language/locallang_db.xlf:tx_simple_domain_model_member.pluginTitle',
         'simple_pi1'
     ],
-    'list_type',
+    'CType',
     'simple'
 );

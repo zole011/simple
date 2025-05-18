@@ -12,7 +12,8 @@ ExtensionUtility::configurePlugin(
         \Gmbit\Simple\Controller\MemberFrontendController::class => 'list, detail',
     ],
     [
-        \Gmbit\Simple\Controller\MemberFrontendController::class => 'list, detail',
+        \Gmbit\Simple\Controller\MemberFrontendController::class => 'detail',
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT 
     ],
     
 );
