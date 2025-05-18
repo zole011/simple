@@ -1,0 +1,20 @@
+<div class="sidebar-widget">
+  <div class="single-sidebar-widget">
+    <div class="tution-wrapper">
+      <h4 class="font-semibold mb-2">Akademsko osoblje</h4>
+      <ul class="menu space-y-1">
+        <f:for each="{groups}" as="label" key="key">
+          <li class="nav-item">
+            <f:link.action
+              action="list"
+              arguments="{group: key}"
+              class="text-blue-600 hover:underline"
+            >
+              {label}
+            </f:link.action>
+          </li>
+        </f:for>
+      </ul>
+    </div>
+  </div>
+</div>

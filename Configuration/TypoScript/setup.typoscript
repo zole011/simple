@@ -1,11 +1,12 @@
 plugin.tx_simple_pi1 {
     view {
-        templateRootPaths.0 = EXT:simple/Resources/Private/Templates/
+        templateRootPaths.0 = EXT:simple/Resources/Private/Templates/Member/
         partialRootPaths.0 = EXT:simple/Resources/Private/Partials/
         layoutRootPaths.0 = EXT:simple/Resources/Private/Layouts/
     }
-    features {
-        # enable all features you need
+    persistence {
+      // PID gde su tvoji member zapisi
+      storagePid = 15
     }
 }
 

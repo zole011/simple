@@ -21,6 +21,7 @@ class Member extends AbstractEntity
     protected string $radovi = '';
     protected string $udzbenici = '';
     protected string $sortiranje = '';
+    protected string $group = '';
 
     protected ?FileReference $cv = null;
     protected ?FileReference $karton = null;
@@ -42,6 +43,7 @@ class Member extends AbstractEntity
     public function getCv(): ?FileReference { return $this->cv; }
     public function getKarton(): ?FileReference { return $this->karton; }
     public function getImage(): ?FileReference { return $this->image; }
+    public function getGroup(): string { return $this->group; }
 
     // Setters
     public function setName(string $name): void { $this->name = $name; }
@@ -59,4 +61,5 @@ class Member extends AbstractEntity
     public function setCv(?FileReference $cv): void { $this->cv = $cv; }
     public function setKarton(?FileReference $karton): void { $this->karton = $karton; }
     public function setImage(?FileReference $image): void { $this->image = $image; }
+    public function setGroup(string $group): void { $this->group = $group;}
 }

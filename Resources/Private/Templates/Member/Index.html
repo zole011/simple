@@ -1,41 +1,36 @@
 <f:layout name="Default" />
 <f:section name="main">
-  <f:debug>{members}</f:debug>
-  <h1>Members</h1>
-  <f:for each="{members}" as="member">
-    <div
-      class="col-lg-4 col-md-4 col-sm-12 flex_column-teachers"
-      style="margin-bottom: 20px"
-    >
-      <div class="single-teacher-item flex-direction-column">
-        <div class="single-teacher-image">
-          <f:if condition="{member.image}">
-            <f:then>
-               <f:link.action action="show" arguments="{member: member}">
-              <f:image
-                image="{member.image}"
-                alt="{member.name}"
-                class="img-responsive"
-                width="260"
-                height="270"
-              />
-              </f:link.action>
-            </f:then>
-            <f:else>
-              <img src="" alt="{member.name}" class="img-responsive" />
-            </f:else>
-          </f:if>
-        </div>
-        <div class="single-teacher-text flex-expand">
-          <h3>
-            <f:link.action action="show" arguments="{member: member}">
-              <f:if condition="{member.prefix}">{member.prefix}&nbsp;</f:if>{member.name}&nbsp;{member.prezime}
-            </f:link.action>
-          </h3>
-          {member.funkcija}
-          <h4>{member.zvanje}</h4>
-        </div>
-      </div>
-    </div>
-  </f:for>
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">Members</h1>
+    <f:link.action action="new" class="btn btn-primary">Create new Member</f:link.action>
+  </div>
+
+  <f:flashMessages />
+
+  <table class="table-auto w-full border-collapse border border-gray-300">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="border px-4 py-2 text-left">Name</th>
+        <th class="border px-4 py-2 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <f:for each="{members}" as="member">
+        <tr class="hover:bg-gray-50">
+          <td class="border px-4 py-2">{member.name}</td>
+          <td class="border px-4 py-2">
+            <f:link.action action="show" arguments="{member: member}" class="text-blue-600 hover:underline">Show</f:link.action>
+            <span class="mx-1">|</span>
+            <f:link.action action="edit" arguments="{member: member}" class="text-yellow-600 hover:underline">Edit</f:link.action>
+            <span class="mx-1">|</span>
+            <f:link.action action="delete" arguments="{member: member}" class="text-red-600 hover:underline">Delete</f:link.action>
+          </td>
+        </tr>
+      </f:for>
+    </tbody>
+  </table>
 </f:section>
+<!--
+  This template is used to display a list of members with their names and actions.
+  It includes a table with member names and action links for showing, editing, and deleting each member.
+  A button to create a new member is also provided.

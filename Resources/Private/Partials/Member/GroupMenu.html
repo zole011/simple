@@ -1,0 +1,25 @@
+<f:section name="main">
+  <div class="col-md-3">
+		<div class="sidebar-widget">
+			<div class="single-sidebar-widget">
+				<div class="tution-wrapper">
+					<div class="tution-fee">
+            <h4>Akademsko osoblje</h4>
+            					<div class="tutor-image">
+					</div>
+					<div class="single-teacher-text">
+          <ul class="menu">
+          <f:for each="{groups}" as="label" key="key">
+            <li li class="nav-item">
+              <f:link.action action="index" arguments="{group: key}" class="text-blue-600 hover:underline">
+                {label}
+              </f:link.action>
+            </li>
+          </f:for>
+          </ul>
+					</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</f:section>

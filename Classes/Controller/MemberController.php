@@ -13,6 +13,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Backend\Template\BackendTemplateView;
 
 class MemberController extends ActionController
 {

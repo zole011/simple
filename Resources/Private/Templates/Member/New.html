@@ -1,0 +1,110 @@
+<f:layout name="Default" />
+<f:section name="main">
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold">Edit Member</h1>
+  </div>
+
+  <f:form action="update" name="member" object="{member}" enctype="multipart/form-data" class="space-y-4">
+    <div>
+      <label for="name" class="block font-medium">Name:</label>
+      <f:form.textfield property="name" id="name" class="form-input w-full" />
+    </div>
+
+    <div>
+      <label for="prefix" class="block font-medium">Prefix:</label>
+      <f:form.textfield property="prefix" id="prefix" class="form-input w-full" />
+    </div>
+
+    <div>
+      <label for="prezime" class="block font-medium">Prezime:</label>
+      <f:form.textfield property="prezime" id="prezime" class="form-input w-full" />
+    </div>
+
+    <div>
+      <label for="funkcija" class="block font-medium">Funkcija:</label>
+      <f:form.textfield property="funkcija" id="funkcija" class="form-input w-full" />
+    </div>
+
+    <div>
+      <label for="zvanje" class="block font-medium">Zvanje:</label>
+      <f:form.textfield property="zvanje" id="zvanje" class="form-input w-full" />
+    </div>
+
+    <div>
+      <label for="oblast" class="block font-medium">Oblast:</label>
+      <f:form.textfield property="oblast" id="oblast" class="form-input w-full" />
+    </div>
+
+    <div>
+      <label for="konsultacije" class="block font-medium">Konsultacije:</label>
+      <f:form.textfield property="konsultacije" id="konsultacije" class="form-input w-full" />
+    </div>
+
+    <div>
+      <label for="email" class="block font-medium">Email:</label>
+      <f:form.textfield property="email" id="email" class="form-input w-full" />
+    </div>
+
+    <div>
+      <label for="biografija" class="block font-medium">Biografija:</label>
+      <f:form.textarea property="biografija" id="biografija" class="form-textarea w-full" rows="5" />
+    </div>
+
+    <div>
+      <label for="radovi" class="block font-medium">Radovi:</label>
+      <f:form.textarea property="radovi" id="radovi" class="form-textarea w-full" rows="5" />
+    </div>
+
+    <div>
+      <label for="udzbenici" class="block font-medium">Udžbenici:</label>
+      <f:form.textarea property="udzbenici" id="udzbenici" class="form-textarea w-full" rows="5" />
+    </div>
+
+    <div>
+      <label for="cv" class="block font-medium">CV (PDF):</label>
+      <f:form.upload property="cv" id="cv" class="form-file" />
+    </div>
+
+    <div>
+      <label for="karton" class="block font-medium">Karton (PDF):</label>
+      <f:form.upload property="karton" id="karton" class="form-file" />
+    </div>
+
+    <div>
+      <label for="image" class="block font-medium">Slika:</label>
+      <f:form.upload property="image" id="image" class="form-file" />
+    </div>
+
+    <div class="form-group">
+        <label for="group">Grupa:</label>
+        <f:form.select property="group" id="group" class="form-control" options="{
+            'Profesori': 'Profesori',
+            'Nastavnici': 'Asistenti i saradnici'
+            }" />
+    </div>
+
+    <div>
+      <label for="sortiranje" class="block font-medium">Sortiranje:</label>
+      <f:form.select property="sortiranje" id="sortiranje" class="form-select w-full" options="{
+        'Direktor':'Direktor',
+        'Direktor za nastavu':'Direktor za nastavu',
+        'Predsednik saveta':'Predsednik saveta',
+        'Šef katedre za ekonomiju i finansije':'Šef katedre za ekonomiju i finansije',
+        'Šef katedre za menadžment i opšte pred':'Šef katedre za menadžment i opšte pred',
+        'Šef katedre za pravo.':'Šef katedre za pravo.',
+        'Redovni':'Redovni',
+        'Vanredni':'Vanredni',
+        'Docenti':'Docenti',
+        'Nastavnik stranog jezika':'Nastavnik stranog jezika',
+        'Asistenti':'Asistenti',
+        'Saradnici':'Saradnici',
+        'Van radnog odnosa':'Van radnog odnosa'
+      }" />
+    </div>
+
+    <div class="flex space-x-2">
+      <f:form.submit value="Update" class="btn btn-primary" />
+      <f:link.action action="index" class="btn btn-secondary">Cancel</f:link.action>
+    </div>
+  </f:form>
+</f:section>

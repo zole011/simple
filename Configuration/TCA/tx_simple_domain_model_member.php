@@ -241,6 +241,18 @@ return [
                 'maxitems' => 1,
             ],
         ],
+        'group' => [
+            'label' => 'LLL:EXT:your_extension/Resources/Private/Language/locallang_db.xlf:tx_yourextension_domain_model_member.group',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['Profesori', 'Profesori'],
+                    ['Asistenti i saradnici', 'Asistenti i saradnici'],
+                ],
+                'default' => '',
+            ],
+        ],
 
     ],
 ];

@@ -21,4 +21,12 @@ class MemberRepository extends Repository
      $query = $this->createQuery();
     return $query->execute();
     }
+    public function findByGroup(string $group)
+    {
+        $query = $this->createQuery();
+        $query->matching(
+            $query->equals('group', $group)
+        );
+        return $query->execute();
+    }
 }
