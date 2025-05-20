@@ -1,5 +1,4 @@
 <f:layout name="Default" />
-<f:debug>{_all}</f:debug>
 <f:section name="main">
 		<div class="col-md-9">
 			<div class="course-details-content">
@@ -9,7 +8,7 @@
 							<div class="overlay-effect">
                 <f:if condition="{member.image}">
                   <f:then>
-                    <f:image image="{member.image}" alt="{member.name}" class="img-responsive" width="100%" height="100%" />
+                    <f:image image="{member.image}" alt="{member.name}" class="img-responsive" width="401" height="415" />
                   </f:then>
                   <f:else>
                     <img src="" alt="{member.name}" class="img-responsive" />
@@ -47,46 +46,57 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="course-duration">
-			<div class="duration-title">
-        <div class="text">Biografija/bibliografija</div>
-      </div>
-      <div class="duration-text">        
-          <button class="text accordion">Biografija</button>
-          <div class="panel">
-            <p>
-              <div class="single-item-text-info">
-              <f:if condition="{member.cv}">
-                <a href="{member.cv.originalResource.publicUrl}" target="_blank">
-                  <i class="fa fa-file-pdf-o"></i>Preuzmite biografiju
-                </a>
-              </f:if>
-              </div>
-            </p>
-          </div>
-          <button class="text accordion">Naučni i stručni radovi</button>
-          <div class="panel">
-            <p>
-              <f:if condition="{member.radovi}">
-                {member.radovi}
-              </f:if>
-            </p>
-          </div>
-          <button class="text accordion">Udžbenici i monografija</button>
-           <div class="panel">
-            <p>
-              <f:if condition="{member.udzbenici}">
-              {member.udzbenici}
-              </f:if>
-            </p>
-          </div>
-   				</div>
-			</div>
-		</div>		
-	</div>       
-  <f:link.action action="list">Back to list</f:link.action>
-    <div class="w-full lg:w-1/4"><f:debug>{_all}</f:debug><h4 class="text-xl font-bold mb-4">Group Menu</h4>
-<f:render partial="GroupMenu" arguments="{groups: groups, currentGroup: currentGroup}" />    </div>
+      <div class="course-duration">
+        <div class="duration-title">
+          <div class="text">Biografija/bibliografija</div>
+        </div>
+        <div class="duration-text">        
+            <button class="text accordion">Biografija</button>
+            <div class="panel">
+              <p>
+                <div class="single-item-text-info">
+                <f:if condition="{member.cv}">
+                  <a href="{member.cv.originalResource.publicUrl}" target="_blank" >
+                    <i class="fa fa-file-pdf-o"></i>Preuzmite biografiju
+                  </a>
+                </f:if>
+                </div>
+              </p>
+            </div>
+            <button class="text accordion">Naučni i stručni radovi</button>
+            <div class="panel">
+              <p>
+                <f:if condition="{member.radovi}">
+                  {member.radovi}
+                </f:if>
+              </p>
+            </div>
+            <button class="text accordion">Udžbenici i monografija</button>
+            <div class="panel">
+              <p>
+                <f:if condition="{member.udzbenici}">
+                {member.udzbenici}
+                </f:if>
+              </p>
+            </div>
+            </div>
+        </div>
+      </div>		
   </div>
+  <div class="col-md-3">
+		<div class="sidebar-widget">
+			<div class="single-sidebar-widget">
+				<div class="tution-wrapper">
+					<div class="tution-fee">
+							<h4>Akademsko osoblje</h4>
+					</div>
+					<div class="tutor-image">
+					</div>
+					<div class="single-teacher-text">
+            <f:render partial="GroupMenu" arguments="{groups: groups, currentGroup: currentGroup}" /> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </f:section>

@@ -6,77 +6,77 @@
 
   <f:form action="update" name="member" object="{member}" enctype="multipart/form-data" class="space-y-4">
     <div>
-      <label for="name" class="block font-medium">Name:</label>
+      <label for="name">{f:translate(key: 'member.name', extensionName: 'Simple')}</label>
       <f:form.textfield property="name" id="name" class="form-input w-full" />
     </div>
 
     <div>
-      <label for="prefix" class="block font-medium">Prefix:</label>
+      <label for="prefix">{f:translate(key: 'member.prefix', extensionName: 'Simple')}</label>
       <f:form.textfield property="prefix" id="prefix" class="form-input w-full" />
     </div>
 
     <div>
-      <label for="prezime" class="block font-medium">Prezime:</label>
+      <label for="prezime">{f:translate(key: 'member.prezime', extensionName: 'Simple')}</label>
       <f:form.textfield property="prezime" id="prezime" class="form-input w-full" />
     </div>
 
     <div>
-      <label for="funkcija" class="block font-medium">Funkcija:</label>
+      <label for="funkcija">{f:translate(key: 'member.funkcija', extensionName: 'Simple')}</label>
       <f:form.textfield property="funkcija" id="funkcija" class="form-input w-full" />
     </div>
 
     <div>
-      <label for="zvanje" class="block font-medium">Zvanje:</label>
+      <label for="zvanje">{f:translate(key: 'member.zvanje', extensionName: 'Simple')}</label>
       <f:form.textfield property="zvanje" id="zvanje" class="form-input w-full" />
     </div>
 
     <div>
-      <label for="oblast" class="block font-medium">Oblast:</label>
+      <label for="oblast">{f:translate(key: 'member.oblast', extensionName: 'Simple')}</label>
       <f:form.textfield property="oblast" id="oblast" class="form-input w-full" />
     </div>
 
     <div>
-      <label for="konsultacije" class="block font-medium">Konsultacije:</label>
+      <label for="konsultacije">{f:translate(key: 'member.konsultacije', extensionName: 'Simple')}</label>
       <f:form.textfield property="konsultacije" id="konsultacije" class="form-input w-full" />
     </div>
 
     <div>
-      <label for="email" class="block font-medium">Email:</label>
+      <label for="email">{f:translate(key: 'member.email', extensionName: 'Simple')}</label>
       <f:form.textfield property="email" id="email" class="form-input w-full" />
     </div>
 
     <div>
-      <label for="biografija" class="block font-medium">Biografija:</label>
+      <label for="biografija">{f:translate(key: 'member.biografija', extensionName: 'Simple')}</label>
       <f:form.textarea property="biografija" id="biografija" class="form-textarea w-full" rows="5" />
     </div>
 
     <div>
-      <label for="radovi" class="block font-medium">Radovi:</label>
+      <label for="radovi">{f:translate(key: 'member.radovi', extensionName: 'Simple')}</label>
       <f:form.textarea property="radovi" id="radovi" class="form-textarea w-full" rows="5" />
     </div>
 
     <div>
-      <label for="udzbenici" class="block font-medium">Udžbenici:</label>
+      <label for="udzbenici">{f:translate(key: 'member.udzbenici', extensionName: 'Simple')}</label>
       <f:form.textarea property="udzbenici" id="udzbenici" class="form-textarea w-full" rows="5" />
     </div>
 
     <div>
-      <label for="cv" class="block font-medium">CV (PDF):</label>
+      <label for="cv">{f:translate(key: 'member.cv', extensionName: 'Simple')}</label>
       <f:form.upload property="cv" id="cv" class="form-file" />
     </div>
 
     <div>
-      <label for="karton" class="block font-medium">Karton (PDF):</label>
+      <label for="karton">{f:translate(key: 'member.karton', extensionName: 'Simple')}</label>
       <f:form.upload property="karton" id="karton" class="form-file" />
     </div>
 
     <div>
-      <label for="image" class="block font-medium">Slika:</label>
+      <label for="image">{f:translate(key: 'member.image', extensionName: 'Simple')}</label>
       <f:form.upload property="image" id="image" class="form-file" />
     </div>
 
     <div class="form-group">
-        <label for="group">Grupa:</label>
+        <label for="group">{f:translate(key: 'member.group', extensionName: 'Simple')}</label>
         <f:form.select property="group" id="group" class="form-control" options="{
             'Profesori': 'Profesori',
             'Nastavnici': 'Asistenti i saradnici'
@@ -84,7 +84,7 @@
     </div>
 
     <div>
-      <label for="sortiranje" class="block font-medium">Sortiranje:</label>
+      <label for="sortiranje">{f:translate(key: 'member.sortiranje', extensionName: 'Simple')}</label>
       <f:form.select property="sortiranje" id="sortiranje" class="form-select w-full" options="{
         'Direktor':'Direktor',
         'Direktor za nastavu':'Direktor za nastavu',
@@ -103,8 +103,8 @@
     </div>
 
     <div class="flex space-x-2">
-      <f:form.submit value="Update" class="btn btn-primary" />
-      <f:link.action action="index" class="btn btn-secondary">Cancel</f:link.action>
+      <f:form.submit value="{f:translate(key: 'member.new', extensionName: 'Simple')}" class="btn btn-primary" />
+      <f:link.action action="index" class="btn btn-secondary">{f:translate(key: 'member.cancel', extensionName: 'Simple')}</f:link.action>
     </div>
   </f:form>
 </f:section>

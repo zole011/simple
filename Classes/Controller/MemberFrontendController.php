@@ -46,25 +46,23 @@ public function listAction(): ResponseInterface
 
 public function detailAction(Member $member): ResponseInterface
 {
-    // 1️⃣ Definiši statičke grupe (isto kao u listAction)
+    // 1️⃣ Definiši grupe kao i u listAction
     $groups = [
         'nastavnici' => 'Nastavnici',
         'direktori'  => 'Direktori',
     ];
 
-    // 2️⃣ Pročitaj iz URL-a eventualni filter (nije obavezno za detail, može ostati null)
-    $currentGroup = $this->request->hasArgument('group')
-        ? $this->request->getArgument('group')
-        : null;
+    // 2️⃣ Odredi currentGroup na osnovu člana
+    //    (pretpostavljam da u modelu imaš polje `sortiranje` ili `group`)
+    $currentGroup = $member->getGroup();
 
-    // 3️⃣ Prosledi sve promenljive u view
+    // 3️⃣ Assign svih promenljivih
     $this->view->assignMultiple([
         'member'       => $member,
         'groups'       => $groups,
         'currentGroup' => $currentGroup,
     ]);
 
-    // 4️⃣ Renderuj standardno detail šablon
     return $this->htmlResponse();
 }
 
