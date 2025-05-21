@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Gmbit\Simple\Domain\Model;
 
-use TYPO3\CMS\Extbase\Annotation\FileUpload;
-use TYPO3\CMS\Core\Resource\Enum\DuplicationBehavior;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
@@ -25,35 +23,8 @@ class Member extends AbstractEntity
     protected string $sortiranje = '';
     protected string $group = '';
 
-    #[FileUpload([
-        'validation' => [
-            'required' => false,
-            'maxFiles' => 1,
-            'allowedMimeTypes' => ['application/pdf']
-        ],
-        'uploadFolder' => '1:/user_upload/profdocs/',
-        'duplicationBehavior' => DuplicationBehavior::RENAME
-    ])]
     protected ?FileReference $cv = null;
-        #[FileUpload([
-        'validation' => [
-            'required' => false,
-            'maxFiles' => 1,
-            'allowedMimeTypes' => ['application/pdf']
-        ],
-        'uploadFolder' => '1:/user_upload/profdocs/',
-        'duplicationBehavior' => DuplicationBehavior::RENAME
-    ])]
     protected ?FileReference $karton = null;
-    #[FileUpload([
-        'validation' => [
-            'required' => false,
-            'maxFiles' => 1,
-            'allowedMimeTypes' => ['image/jpeg','image/png','image/gif']
-        ],
-        'uploadFolder'        => '1:/user_upload/profimg/',
-        'duplicationBehavior' => DuplicationBehavior::RENAME,
-    ])]    
     protected ?FileReference $image = null;
 
     // Getters

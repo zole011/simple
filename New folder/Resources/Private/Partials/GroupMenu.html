@@ -1,0 +1,18 @@
+
+      <ul class="menu">
+        <f:for each="{groups}" as="label" key="key">
+          <li class="nav-item
+            <f:if condition='{key} == {currentGroup}'>
+              <f:then> active</f:then>
+            </f:if>
+          ">
+            <f:link.action
+              action="list"
+              arguments="{group: key}"
+              class="text-blue-600 hover:underline"
+            >
+              {label}
+            </f:link.action>
+          </li>
+        </f:for>
+      </ul>

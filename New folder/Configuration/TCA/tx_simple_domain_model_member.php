@@ -341,8 +341,8 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['nastavnici', 'nastavnici'],
-                    ['direktori', 'direktori'],
+                    ['Profesori', 'Profesori'],
+                    ['Nastavnici', 'Asistenti i saradnici'],
                 ],
                 'default' => '',
                 'behaviour' => [

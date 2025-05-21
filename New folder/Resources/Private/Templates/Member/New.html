@@ -1,17 +1,10 @@
 <f:layout name="Default" />
 <f:section name="main">
   <div class="mb-6">
-    <h1 class="text-2xl font-bold">Create new Member</h1>
-  </div>
-  <!-- Language Tabs -->
-  <div class="tabs mb-4">
-    <button data-tab-target="#tab-default" class="tab active"><f:translate key="language.default" extensionName="Simple" /></button>
-    <f:for each="{languages}" as="lang">
-      <button data-tab-target="#tab-{lang.languageId}" class="tab {lang.active -> f:if(then: 'active')}" title="{lang.title}">{lang.title}</button>
-    </f:for>
+    <h1 class="text-2xl font-bold">Edit Member</h1>
   </div>
 
-  <f:form action="create" name="newMember" object="{newMember}" enctype="multipart/form-data" class="space-y-4">
+  <f:form action="update" name="member" object="{member}" enctype="multipart/form-data" class="space-y-4">
     <div>
       <label for="name">{f:translate(key: 'member.name', extensionName: 'Simple')}</label>
       <f:form.textfield property="name" id="name" class="form-input w-full" />
@@ -85,8 +78,8 @@
     <div class="form-group">
         <label for="group">{f:translate(key: 'member.group', extensionName: 'Simple')}</label>
         <f:form.select property="group" id="group" class="form-control" options="{
-            'nastavnici': 'Profesori',
-            'direktori': 'Asistenti i saradnici'
+            'Profesori': 'Profesori',
+            'Nastavnici': 'Asistenti i saradnici'
             }" />
     </div>
 
@@ -115,16 +108,3 @@
     </div>
   </f:form>
 </f:section>
-
-<!-- JS to toggle tabs -->
-<script>
-  document.querySelectorAll('.tab').forEach(button => {
-    button.addEventListener('click', () => {
-      const target = document.querySelector(button.dataset.tabTarget);
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      button.classList.add('active');
-      target.classList.remove('hidden');
-    });
-  });
-</script>

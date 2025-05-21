@@ -12,7 +12,8 @@ use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
-
+use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Backend\Template\BackendTemplateView;
 
 class MemberController extends ActionController
 {
@@ -33,11 +34,75 @@ class MemberController extends ActionController
         return $this->htmlResponse();
     }
 
-    public function createAction(Member $newMember): ResponseInterface
+    public function createAction(): ResponseInterface
     {
-        $newMember->setPid(15);
-        $this->memberRepository->add($newMember);
-        // nema više ručnog presecanja $_FILES
+        $data = $this->request->getArgument('newMember') ?? [];
+
+        $member = new Member();
+        $member->setName($data['name'] ?? '');
+        $member->setPrefix($data['prefix'] ?? '');
+        $member->setPrezime($data['prezime'] ?? '');
+        $member->setFunkcija($data['funkcija'] ?? '');
+        $member->setZvanje($data['zvanje'] ?? '');
+        $member->setOblast($data['oblast'] ?? '');
+        $member->setKonsultacije($data['konsultacije'] ?? '');
+        $member->setEmail($data['email'] ?? '');
+        $member->setBiografija($data['biografija'] ?? '');
+        $member->setRadovi($data['radovi'] ?? '');
+        $member->setUdzbenici($data['udzbenici'] ?? '');
+        $member->setSortiranje($data['sortiranje'] ?? '');
+
+        // 1. Prvo sačuvaj Member bez fajlova
+        $this->memberRepository->add($member);
+        $this->persistenceManager->persistAll(); // da dobije UID
+
+        $uid = $member->getUid();
+
+        // 2. Sada upload fajlova i veži ih za ovog Member-a
+        //file_put_contents('E:/xampp83/htdocs/pep/upload_debug.txt', print_r($_FILES, true));
+
+        $cvUpload = [
+                'name'     => $_FILES['newMember']['name']['cv'] ?? null,
+                'type'     => $_FILES['newMember']['type']['cv'] ?? null,
+                'tmp_name' => $_FILES['newMember']['tmp_name']['cv'] ?? null,
+                'error'    => $_FILES['newMember']['error']['cv'] ?? null,
+                'size'     => $_FILES['newMember']['size']['cv'] ?? null,
+        ];
+        if (!empty($cvUpload['tmp_name'])) {
+            $fileRef = $this->createFileReferenceForMember($cvUpload, 'cv', $uid);
+            if ($fileRef) {
+                $this->updateMemberFileReferenceField($uid, 'cv', $fileRef->getUid());
+            }
+        }
+        $kartonUpload = [
+                'name'     => $_FILES['newMember']['name']['karton'] ?? null,
+                'type'     => $_FILES['newMember']['type']['karton'] ?? null,
+                'tmp_name' => $_FILES['newMember']['tmp_name']['karton'] ?? null,
+                'error'    => $_FILES['newMember']['error']['karton'] ?? null,
+                'size'     => $_FILES['newMember']['size']['karton'] ?? null,
+            ];
+        if (!empty($kartonUpload['tmp_name'])) {
+            $fileRef = $this->createFileReferenceForMember($kartonUpload, 'karton', $uid);
+            if ($fileRef) {
+                $this->updateMemberFileReferenceField($uid, 'karton', $fileRef->getUid());
+            }
+        }
+        $imageUpload = [
+                'name'     => $_FILES['newMember']['name']['image'] ?? null,
+                'type'     => $_FILES['newMember']['type']['image'] ?? null,
+                'tmp_name' => $_FILES['newMember']['tmp_name']['image'] ?? null,
+                'error'    => $_FILES['newMember']['error']['image'] ?? null,
+                'size'     => $_FILES['newMember']['size']['image'] ?? null,
+            ];
+        if (!empty($imageUpload['tmp_name'])) {
+            $fileRef = $this->createFileReferenceForMember($imageUpload, 'image', $uid);
+            if ($fileRef) {
+                $this->updateMemberFileReferenceField($uid, 'image', $fileRef->getUid());
+            }
+        }
+
+        $this->memberRepository->update($member);
+
         return $this->redirect('index');
     }
 
@@ -207,4 +272,3 @@ class MemberController extends ActionController
         );
     }
 }
-

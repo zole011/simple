@@ -1,0 +1,67 @@
+<f:layout name="Default" />
+<f:section name="main">
+  <h1 class="text-2xl font-bold mb-4">Member Details</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <p><strong>Name:</strong> {member.name}</p>
+      <p><strong>Prefix:</strong> {member.prefix}</p>
+      <p><strong>Prezime:</strong> {member.prezime}</p>
+      <p><strong>Funkcija:</strong> {member.funkcija}</p>
+      <p><strong>Zvanje:</strong> {member.zvanje}</p>
+      <p><strong>Oblast:</strong> {member.oblast}</p>
+      <p><strong>Konsultacije:</strong> {member.konsultacije}</p>
+      <p><strong>Email:</strong> {member.email}</p>
+      <p><strong>Sortiranje:</strong> {member.sortiranje}</p>
+    </div>
+
+    <div>
+      <p><strong>Biografija:</strong></p>
+      <p class="whitespace-pre-line">{member.biografija}</p>
+
+      <p class="mt-4"><strong>Radovi:</strong></p>
+      <p class="whitespace-pre-line">{member.radovi}</p>
+
+      <p class="mt-4"><strong>Udžbenici:</strong></p>
+      <p class="whitespace-pre-line">{member.udzbenici}</p>
+    </div>
+  </div>
+
+  <div class="mt-6">
+    <p><strong>CV:</strong></p>
+    <f:if condition="{member.cv}">
+      <f:then>
+        <a href="{f:uri.resource(path: member.cv.originalResource.publicUrl)}" target="_blank" class="text-blue-600 hover:underline">Download CV</a>
+      </f:then>
+      <f:else>
+        <span>No file uploaded.</span>
+      </f:else>
+    </f:if>
+
+    <p class="mt-4"><strong>Karton:</strong></p>
+    <f:if condition="{member.karton}">
+      <f:then>
+        <a href="{f:uri.resource(path: member.karton.originalResource.publicUrl)}" target="_blank" class="text-blue-600 hover:underline">Download Karton</a>
+      </f:then>
+      <f:else>
+        <span>No file uploaded.</span>
+      </f:else>
+    </f:if>
+
+    <p class="mt-4"><strong>Image:</strong></p>
+    <f:if condition="{member.image}">
+      <f:then>
+        <img src="{f:uri.image(image: member.image, maxWidth: 200)}" alt="{member.name}" class="mt-2 rounded shadow" />
+      </f:then>
+      <f:else>
+        <span>No image uploaded.</span>
+      </f:else>
+    </f:if>
+  </div>
+
+  <div class="mt-6 flex space-x-4">
+    <f:link.action action="edit" arguments="{member: member}" class="btn btn-secondary">Edit</f:link.action>
+    <f:link.action action="index" class="btn btn-primary">Back to list</f:link.action>
+  </div>
+</f:section>
+
