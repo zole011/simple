@@ -9,6 +9,11 @@
       <trans-unit id="tx_simple_domain_model_member.name">
         <source>Name</source>
       </trans-unit>
+      <trans-unit id="tx_simple_domain_model_member">
+        <source>Members</source>
+        <target>Članovi</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
+

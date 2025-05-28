@@ -6,3 +6,7 @@ services:
 
   Gmbit\Simple\:
     resource: '../Classes/*'
+  Psr\Log\LoggerInterface:
+    factory: ['TYPO3\CMS\Core\Log\LogManager', 'getLogger']
+    arguments:
+      - 'Gmbit\Simple\Controller\MemberController'

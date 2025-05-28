@@ -13,6 +13,7 @@ return [
         'controllerActions' => [
             \Gmbit\Simple\Controller\MemberController::class => [
                 'index',
+                'createTranslation',
                 'show',
                 'new',
                 'create',

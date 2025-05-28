@@ -1,17 +1,20 @@
 <f:layout name="Default" />
 <f:section name="main">
   <div class="mb-6">
-    <h1 class="text-2xl font-bold">Create new Member</h1>
-  </div>
-  <!-- Language Tabs -->
-  <div class="tabs mb-4">
-    <button data-tab-target="#tab-default" class="tab active"><f:translate key="language.default" extensionName="Simple" /></button>
-    <f:for each="{languages}" as="lang">
-      <button data-tab-target="#tab-{lang.languageId}" class="tab {lang.active -> f:if(then: 'active')}" title="{lang.title}">{lang.title}</button>
-    </f:for>
+    <h1 class="text-2xl font-bold">Edit Member</h1>
   </div>
 
-  <f:form action="create" name="newMember" object="{newMember}" enctype="multipart/form-data" class="space-y-4">
+  <f:form action="create" name="member" object="{member}" enctype="multipart/form-data" class="space-y-4">
+    <f:form.hidden property="sysLanguageUid" />
+    <f:form.hidden property="l10nParent" />
+    <f:form.hidden property="pid" />
+    <f:if condition="{member.translatedLinks}">
+  <select onchange="if(this.value){window.location.href=this.value;}">
+    <f:for each="{member.translatedLinks}" as="lang">
+      <option value="{lang.link}">{lang.title}</option>
+    </f:for>
+  </select>
+</f:if>
     <div>
       <label for="name">{f:translate(key: 'member.name', extensionName: 'Simple')}</label>
       <f:form.textfield property="name" id="name" class="form-input w-full" />
@@ -115,16 +118,3 @@
     </div>
   </f:form>
 </f:section>
-
-<!-- JS to toggle tabs -->
-<script>
-  document.querySelectorAll('.tab').forEach(button => {
-    button.addEventListener('click', () => {
-      const target = document.querySelector(button.dataset.tabTarget);
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      button.classList.add('active');
-      target.classList.remove('hidden');
-    });
-  });
-</script>

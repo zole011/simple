@@ -2,6 +2,17 @@
 <f:section name="main">
     <h1>Create New Member</h1>
     <f:form action="update" name="member" object="{member}"  enctype="multipart/form-data">
+        <f:form.hidden property="sysLanguageUid" />
+        <f:form.hidden property="l10nParent" />
+        <f:form.hidden property="pid" />
+        <f:form.hidden name="member[pid]" value="{member.pid}" />
+        <f:if condition="{member.translatedLinks}">
+        <select onchange="if(this.value){window.location.href=this.value;}">
+            <f:for each="{member.translatedLinks}" as="lang">
+            <option value="{lang.link}">{lang.title}</option>
+            </f:for>
+        </select>
+        </f:if>
         <div class="form-group">
             <label for="name">Name:</label>
             <f:form.textfield property="name" id="name" class="form-control" />
@@ -100,7 +111,7 @@
         </div>
 
         <div class="form-group">
-            <f:form.submit value="Create" class="btn btn-primary" />
+            <f:form.submit value="Update" class="btn btn-primary" />
         </div>
     </f:form>
     <f:link.action action="index" class="btn btn-secondary">Cancel</f:link.action>

@@ -16,3 +16,7 @@ ExtensionUtility::configurePlugin(
     ],
     
 );
+
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['displayErrors'] = 1;
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['devIPmask'] = '*';
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['exceptionalErrors'] = E_ALL;

@@ -2,27 +2,31 @@
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:simple/Resources/Private/Language/locallang_db.xlf:tx_simple_domain_model_member',
+        'rootLevel' => 0,
         'label' => 'name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
         'delete' => 'deleted',
         // Dodajemo polja za višejezičnost
-        'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
-        'transOrigDiffSourceField' => 'l10n_diffsource',
-        'translationSource' => 'l10n_source',
+        //'versioningWS' => true, // Omogućava verzije i radne prostore (bitno za prevođenje)
+        'languageField' => 'sys_language_uid', // Koja kolona drži UID jezika
+        'transOrigPointerField' => 'l10n_parent', // Koja kolona drži UID originalnog zapisa
+        'transOrigDiffSourceField' => 'l10n_diffsource', // Za prikaz razlika u prevodu
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
         'iconfile' => 'EXT:simple/Resources/Public/Icons/Extension.svg',
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
     ],
     'types' => [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                     hidden, sys_language_uid, l10n_parent, l10n_diffsource,
-                    name, prefix, prezime, funkcija, zvanje, oblast, konsultacije, email, sortiranje,
+                    name, prefix, prezime, funkcija, zvanje, oblast, konsultacije, email, group, sortiranje,
                 --div--;LLL:EXT:simple/Resources/Private/Language/locallang_db.xlf:tabs.content,
                     biografija, radovi, udzbenici,
                 --div--;LLL:EXT:simple/Resources/Private/Language/locallang_db.xlf:tabs.media,
@@ -36,28 +40,27 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
-                'type' => 'language',
-                'default' => 0, // 0 je podrazumevani jezik (srpski)
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'special' => 'languages',
+                'items' => [
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages', -1],
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 0]
+                ],
+                'default' => 0,
             ],
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
+            'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => [
-                    ['', 0],
-                ],
+                'default' => 0,
                 'foreign_table' => 'tx_simple_domain_model_member',
-                'foreign_table_where' => 'AND {#tx_simple_domain_model_member}.{#pid}=###CURRENT_PID### AND {#tx_simple_domain_model_member}.{#sys_language_uid} IN (-1,0)',
-                'default' => 0
+                'foreign_table_where' => 'AND tx_simple_domain_model_member.pid=###CURRENT_PID### AND tx_simple_domain_model_member.sys_language_uid IN (-1,0)',
             ],
-        ],
-        'l10n_source' => [
-            'config' => [
-                'type' => 'passthrough'
-            ]
         ],
         'l10n_diffsource' => [
             'config' => [
@@ -92,19 +95,20 @@ return [
             ],
         ],
         'name' => [
-            'exclude' => true,
+            'exclude' => false,
             'label' => 'LLL:EXT:simple/Resources/Private/Language/locallang_db.xlf:tx_simple_domain_model_member.name',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim,required',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true
                 ],
             ],
+            'l10n_mode' => 'mergeIfNotBlank', 
+            'l10n_display' => 'defaultContent',
         ],
         'prefix' => [
-            'exclude' => true,
+            'exclude' => false,
             'label' => 'LLL:EXT:simple/Resources/Private/Language/locallang_db.xlf:tx_simple_domain_model_member.prefix',
             'config' => [
                 'type' => 'input',
@@ -113,9 +117,11 @@ return [
                     'allowLanguageSynchronization' => true
                 ],
             ],
+            'l10n_mode' => 'mergeIfNotBlank', 
+            'l10n_display' => 'defaultContent',
         ],
         'prezime' => [
-            'exclude' => true,
+            'exclude' => false,
             'label' => 'LLL:EXT:simple/Resources/Private/Language/locallang_db.xlf:tx_simple_domain_model_member.prezime',
             'config' => [
                 'type' => 'input',
@@ -124,6 +130,8 @@ return [
                     'allowLanguageSynchronization' => true
                 ],
             ],
+            'l10n_mode' => 'mergeIfNotBlank', 
+            'l10n_display' => 'defaultContent',
         ],
         'funkcija' => [
             'exclude' => true,
@@ -346,7 +354,7 @@ return [
                 ],
                 'default' => '',
                 'behaviour' => [
-                    'allowLanguageSynchronization' => false
+                    'allowLanguageSynchronization' => true
                 ],
             ],
         ],

@@ -11,6 +11,7 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Member extends AbstractEntity
 {
+    protected bool $hasTranslation = false;
     protected string $name = '';
     protected string $prefix = '';
     protected string $prezime = '';
@@ -56,6 +57,13 @@ class Member extends AbstractEntity
     ])]    
     protected ?FileReference $image = null;
 
+        /**
+     * @var array
+     * Privremeno svojstvo za čuvanje linkova za prevođenje
+     * NOTE: Ovo nije persistirano u bazu podataka. Služi samo za prikaz u backendu.
+     */
+    protected array $_translatedLinks = []; 
+
     // Getters
     public function getName(): string { return $this->name; }
     public function getPrefix(): string { return $this->prefix; }
@@ -91,4 +99,53 @@ class Member extends AbstractEntity
     public function setKarton(?FileReference $karton): void { $this->karton = $karton; }
     public function setImage(?FileReference $image): void { $this->image = $image; }
     public function setGroup(string $group): void { $this->group = $group;}
+
+    /**
+     * @var int
+     */
+    protected int $sysLanguageUid = 0;
+
+    /**
+     * @var int
+     */
+    protected int $l10nParent      = 0;
+
+    // …and then the getters/setters:
+
+    public function getSysLanguageUid(): int
+    {
+        return $this->sysLanguageUid;
+    }
+
+    public function setSysLanguageUid(int $uid): void
+    {
+        $this->sysLanguageUid = $uid;
+    }
+
+    public function getL10nParent(): int
+    {
+        return $this->l10nParent;
+    }
+
+    public function setL10nParent(int $uid): void
+    {
+        $this->l10nParent = $uid;
+    }
+    /**
+     * Get the _translatedLinks array.
+     * @return array
+     */
+    public function getTranslatedLinks(): array
+    {
+        return $this->_translatedLinks;
+    }
+
+    /**
+     * Set the _translatedLinks array.
+     * @param array $translatedLinks
+     */
+    public function setTranslatedLinks(array $translatedLinks): void
+    {
+        $this->_translatedLinks = $translatedLinks;
+    }
 }
