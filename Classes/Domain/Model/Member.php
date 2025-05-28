@@ -11,7 +11,6 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Member extends AbstractEntity
 {
-    protected bool $hasTranslation = false;
     protected string $name = '';
     protected string $prefix = '';
     protected string $prezime = '';

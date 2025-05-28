@@ -7,7 +7,7 @@ namespace Gmbit\Simple\Controller;
 use Gmbit\Simple\Domain\Model\Member;
 use Gmbit\Simple\Domain\Repository\MemberRepository;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Log\LoggerInterface;
+//use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Site\SiteFinder;
@@ -23,7 +23,7 @@ class MemberController extends ActionController
     public function __construct(
         protected readonly MemberRepository $memberRepository,
         protected readonly Context $context,
-        protected readonly LoggerInterface $logger,
+        //protected readonly LoggerInterface $logger,
         protected readonly SiteFinder $siteFinder,
         protected readonly PersistenceManagerInterface $persistenceManager
     ) {
@@ -37,7 +37,6 @@ class MemberController extends ActionController
     public function initializeAction(): void
     {
         $this->settings['persistence']['storagePid'] = self::STORAGE_PID;
-        $this->logRequestParams();
     }
 
     public function indexAction(): ResponseInterface
@@ -59,33 +58,33 @@ class MemberController extends ActionController
                     continue;
                 }
 
-                $translation = $translations[$member->getUid()][$languageId] ?? null;
+                $translationUid = $translations[$member->getUid()][$languageId] ?? null;
 
-                if ($translation !== null) {
+                if ($translationUid !== null) {
                     $link = $uriBuilder->buildUriFromRoute('record_edit', [
-                        'edit[tx_simple_domain_model_member][' . $translation->getUid() . ']' => 'edit',
+                        'edit[tx_simple_domain_model_member][' . $translationUid . ']' => 'edit',
                         'returnUrl' => (string)$this->uriBuilder->reset()->uriFor('index')
                     ]);
-                } else {
-$uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+                }  else {
+                    $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
 
-$link = $uriBuilder->buildUriFromRoute(
-    'record_edit',
-    [
-        'edit' => [
-            'tx_simple_domain_model_member' => [
-                $member->getPid() => 'new', // PID kao ključ
-            ],
-        ],
-        'defVals' => [
-            'tx_simple_domain_model_member' => [
-                'sys_language_uid' => 1,
-                'l10n_parent' => $member->getUid(),
-            ],
-        ],
-        'returnUrl' => (string)$this->uriBuilder->reset()->build(),
-    ]
-);
+                    $link = $uriBuilder->buildUriFromRoute(
+                        'record_edit',
+                        [
+                            'edit' => [
+                                'tx_simple_domain_model_member' => [
+                                    $member->getPid() => 'new', // PID kao ključ
+                                ],
+                            ],
+                            'defVals' => [
+                                'tx_simple_domain_model_member' => [
+                                    'sys_language_uid' => 1,
+                                    'l10n_parent' => $member->getUid(),
+                                ],
+                            ],
+                            'returnUrl' => (string)$this->uriBuilder->reset()->build(),
+                        ]
+                    );
 
                 }
 
@@ -93,7 +92,7 @@ $link = $uriBuilder->buildUriFromRoute(
                     'language' => $languageConf['title'],
                     'flag' => $languageConf['flag'] ?? 'default',
                     'link' => (string)$link,
-                    'exists' => $translation !== null
+                    'exists' => $translationUid !== null
                 ];
             }
 
@@ -156,54 +155,6 @@ $link = $uriBuilder->buildUriFromRoute(
         $this->addFlashMessage('Member deleted.');
         return $this->redirect('index');
     }
-
-    public function createTranslationAction(int $l10nParent, int $sysLanguageUid): ResponseInterface
-    {
-        $logFile = GeneralUtility::getFileAbsFileName('typo3temp/translate_debug.log');
-        file_put_contents($logFile, "[START] createTranslationAction at " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
-
-        try {
-            file_put_contents($logFile, "[CHECK] l10nParent: $l10nParent | sysLanguageUid: $sysLanguageUid\n", FILE_APPEND);
-
-            $original = $this->memberRepository->findByUid($l10nParent);
-            if (!$original) {
-                throw new \RuntimeException('Original member not found: ' . $l10nParent, 170000001);
-            }
-            file_put_contents($logFile, "[CHECK] Original member found: " . $original->getUid() . "\n", FILE_APPEND);
-
-            $currentPageId = (int)($this->request->getArgument('id') ?? self::STORAGE_PID);
-            file_put_contents($logFile, "[CHECK] Current PID: $currentPageId\n", FILE_APPEND);
-
-            $newMember = new Member();
-            $newMember->setPid($currentPageId);
-            $newMember->_setProperty('pid', $currentPageId);
-            $newMember->setL10nParent($l10nParent);
-            $newMember->setSysLanguageUid($sysLanguageUid);
-            file_put_contents($logFile, "[CHECK] New member initialized\n", FILE_APPEND);
-
-            $this->copyTranslatableFields($original, $newMember, $sysLanguageUid);
-            file_put_contents($logFile, "[CHECK] Translatable fields copied\n", FILE_APPEND);
-
-            $this->memberRepository->add($newMember);
-            $this->persistenceManager->persistAll();
-            $this->persistenceManager->clearState();
-            file_put_contents($logFile, "[CHECK] New member persisted: " . $newMember->getUid() . "\n", FILE_APPEND);
-
-            $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
-            $editLink = $uriBuilder->buildUriFromRoute('record_edit', [
-                'edit[tx_simple_domain_model_member][' . $newMember->getUid() . ']' => 'edit',
-                'returnUrl' => (string)$this->uriBuilder->reset()->uriFor('index'),
-            ]);
-            file_put_contents($logFile, "[CHECK] Redirecting to edit: $editLink\n", FILE_APPEND);
-
-            return $this->redirectToUri($editLink);
-        } catch (\Throwable $e) {
-            file_put_contents($logFile, "[ERROR] " . $e->getMessage() . "\n" . $e->getTraceAsString(), FILE_APPEND);
-            echo '<pre style="color: red;">ERROR: ' . $e->getMessage() . "\n" . $e->getTraceAsString() . '</pre>';
-            exit;
-        }
-    }
-
     private function getEnabledLanguages(): array
     {
         $languages = [];
@@ -226,43 +177,5 @@ $link = $uriBuilder->buildUriFromRoute(
             ];
         }
         return $languages;
-    }
-
-    private function copyTranslatableFields(Member $original, Member $target, int $languageId): void
-    {
-        $target->setPrefix($original->getPrefix());
-        $target->setPrezime($original->getPrezime());
-        $target->setFunkcija($original->getFunkcija());
-        $target->setZvanje($original->getZvanje());
-        $target->setOblast($original->getOblast());
-        $target->setKonsultacije($original->getKonsultacije());
-        $target->setEmail($original->getEmail());
-        $target->setBiografija($original->getBiografija());
-        $target->setRadovi($original->getRadovi());
-        $target->setUdzbenici($original->getUdzbenici());
-        $target->setCv($original->getCv());
-        $target->setKarton($original->getKarton());
-        $target->setImage($original->getImage());
-        $target->setGroup($original->getGroup());
-        $target->setSortiranje($original->getSortiranje());
-
-        $siteLanguages = $this->siteFinder->getSiteByPageId(self::STORAGE_PID)->getLanguages();
-        $langTitle = 'Unknown';
-        foreach ($siteLanguages as $lang) {
-            if ($lang->getLanguageId() === $languageId) {
-                $langTitle = $lang->getTitle();
-                break;
-            }
-        }
-        $target->setName($original->getName() . ' (PREVOD: ' . $langTitle . ')');
-    }
-
-    private function logRequestParams(): void
-    {
-        $logFile = GeneralUtility::getFileAbsFileName('typo3temp/translate_debug.log');
-        $log = "[REQUEST] " . date('Y-m-d H:i:s') . "\n";
-        $log .= "GET:\n" . print_r($_GET, true) . "\n";
-        $log .= "POST:\n" . print_r($_POST, true) . "\n";
-        file_put_contents($logFile, $log, FILE_APPEND);
     }
 }

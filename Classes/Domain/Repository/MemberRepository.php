@@ -10,6 +10,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
+//use Psr\Log\LoggerInterface;
 
 
 class MemberRepository extends Repository
@@ -32,6 +33,7 @@ class MemberRepository extends Repository
         );
         return $query->execute()->getFirst();
     }
+
     public function initializeObject(): void
     {
         $context = GeneralUtility::makeInstance(Context::class);
@@ -49,6 +51,7 @@ class MemberRepository extends Repository
      $query = $this->createQuery();
     return $query->execute();
     }
+
     public function findByGroup(string $group)
     {
         $query = $this->createQuery();
@@ -57,6 +60,7 @@ class MemberRepository extends Repository
         );
         return $query->execute();
     }
+
     public function findTranslationForOriginal(int $originalUid, int $languageUid): ?Member
     {
         $query = $this->createQuery();
@@ -70,22 +74,39 @@ class MemberRepository extends Repository
         // Vrati prvi rezultat ili null ako ništa nije pronađeno
         return $query->execute()->getFirst();
     }
+
     /**
      * @return Member[] indexed by l10n_parent and sys_language_uid
      */
     public function findAllTranslationsIndexed(): array
     {
-        $query = $this->createQuery();
-        $query->matching(
-            $query->greaterThan('sysLanguageUid', 0)
-        );
-
         $translations = [];
-        foreach ($query->execute() as $translation) {
-            $parentId = $translation->getL10nParent();
-            $langId = $translation->getSysLanguageUid();
-            $translations[$parentId][$langId] = $translation;
+
+        $connection = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+            \TYPO3\CMS\Core\Database\ConnectionPool::class
+        )->getConnectionForTable('tx_simple_domain_model_member');
+
+        $queryBuilder = $connection->createQueryBuilder();
+        $expressionBuilder = $queryBuilder->expr();
+
+        $queryBuilder
+            ->select('uid', 'l10n_parent', 'sys_language_uid')
+            ->from('tx_simple_domain_model_member')
+            ->where(
+                $expressionBuilder->gt('sys_language_uid', 0),
+                $expressionBuilder->eq('deleted', 0),
+                $expressionBuilder->eq('hidden', 0)
+            );
+
+        $rows = $queryBuilder->executeQuery()->fetchAllAssociative();
+
+        foreach ($rows as $row) {
+            $parentId = (int)$row['l10n_parent'];
+            $langId = (int)$row['sys_language_uid'];
+            $uid = (int)$row['uid'];
+            $translations[$parentId][$langId] = $uid;
         }
+
         return $translations;
     }
 }

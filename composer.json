@@ -15,7 +15,13 @@
   },
   "extra": {
     "typo3/cms": {
-      "extension-key": "simple"
+      "extension-key": "simple",
+      "configuration": {
+        "backend": {
+          "modules": "Configuration/Backend/Modules.php"
+        },
+        "icons": "Configuration/Icons.php"
+      }
     }
   }
 }
