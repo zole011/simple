@@ -1,10 +1,14 @@
 <?php
 return [
-    'memberfrontend' => [
+    'Pi1' => [
         'controllerActions' => [
             \Gmbit\Simple\Controller\MemberFrontendController::class => [
-                'list',
-                'detail',
+                'list', 'detail'
+            ],
+        ],
+        'nonCacheableActions' => [
+            \Gmbit\Simple\Controller\MemberFrontendController::class => [
+                'detail'
             ],
         ],
     ],

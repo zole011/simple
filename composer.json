@@ -16,12 +16,9 @@
   "extra": {
     "typo3/cms": {
       "extension-key": "simple",
-      "configuration": {
-        "backend": {
-          "modules": "Configuration/Backend/Modules.php"
-        },
-        "icons": "Configuration/Icons.php"
-      }
+      "frontend": "Configuration/Frontend",
+      "backend": "Configuration/Backend",
+      "icon": "Resources/Public/Icons/ext_icon.svg"
     }
   }
 }
