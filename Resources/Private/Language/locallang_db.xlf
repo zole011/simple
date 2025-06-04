@@ -13,6 +13,9 @@
         <source>Members</source>
         <target>Članovi</target>
       </trans-unit>
+      <trans-unit id="tt_content.list_type_pi1">
+          <source>Simple Plugin</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

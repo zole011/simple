@@ -19,7 +19,7 @@ plugin.tx_simple_pi1 {
 
   view {
     templateRootPaths {
-      0 = EXT:simple/Resources/Private/Templates/
+      0 = EXT:simple/Resources/Private/Templates/Member/
     }
     partialRootPaths {
       0 = EXT:simple/Resources/Private/Partials/
